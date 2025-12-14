@@ -40,4 +40,18 @@ export default {
   width: calc(100% - 220px);
   min-height: 100vh;
 }
+
+/* ===== RESPONSIVE ===== */
+
+@media (max-width: 1024px) {
+  .app-layout {
+    flex-direction: column;
+  }
+
+  .content {
+    margin-left: 0;
+    width: 100%;
+  }
+}
+
 </style>

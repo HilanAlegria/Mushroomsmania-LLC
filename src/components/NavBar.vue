@@ -98,5 +98,52 @@ export default {
   color: var(--verde-herbal);
 }
 
+/* ===== RESPONSIVE NAVBAR ===== */
+
+@media (max-width: 1024px) {
+  .sidebar {
+    position: relative;
+    width: 100%;
+    height: auto;
+    flex-direction: row;
+    padding: 20px;
+  }
+
+  .brand {
+    margin-bottom: 20px;
+  }
+
+  .menu {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 18px;
+  }
+
+  .menu a {
+    font-size: 1.2rem;
+  }
+
+  .menu a:hover {
+    transform: scale(1.15);
+  }
+}
+
+/* ===== CELULARES ===== */
+
+@media (max-width: 768px) {
+  .menu {
+    justify-content: center;
+  }
+
+  .brand-top,
+  .brand-bottom {
+    font-size: 1.5rem;
+  }
+
+  .menu a {
+    font-size: 1.1rem;
+  }
+}
+
 </style>
 
