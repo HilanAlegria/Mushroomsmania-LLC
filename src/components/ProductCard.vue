@@ -2,12 +2,15 @@
   <div class="product-card">
     <img :src="product.image" :alt="product.name" />
 
-    <h3>{{ product.name }}</h3>
-    <p class="beneficio">{{ product.benefit }}</p>
-    
-    <p class="precio">${{ product.price }}</p>
+    <div class="info">
+      <h3>{{ product.name }}</h3>
+      <p class="benefit">{{ product.benefit }}</p>
+      <p class="price">${{ product.price }}</p>
 
-    <button @click="$emit('add-to-cart', product)">Agregar al carrito</button>
+      <button @click="$emit('add-to-cart', product)">
+        Agregar al carrito
+      </button>
+    </div>
   </div>
 </template>
 
@@ -22,24 +25,38 @@ export default {
 
 <style scoped>
 .product-card {
+  display: flex;
+  flex-direction: column;
   background: var(--crema-natural);
-  padding: 20px;
   border-radius: var(--radius);
-  text-align: center;
+  overflow: hidden;
   box-shadow: var(--shadow);
+  transition: transform 0.3s;
+}
+
+.product-card:hover {
+  transform: translateY(-6px);
 }
 
 .product-card img {
-  height: 180px;
-  object-fit: cover;
+  height: 220px;
   width: 100%;
+  object-fit: cover;
 }
 
-.precio {
-  margin-top: 10px;
+.info {
+  padding: 20px;
+}
+
+.benefit {
+  margin: 10px 0;
+  font-size: 0.95rem;
+}
+
+.price {
   font-size: 1.2rem;
-  color: var(--verde-herbal);
   font-weight: bold;
+  color: var(--verde-herbal);
+  margin-bottom: 15px;
 }
 </style>
-

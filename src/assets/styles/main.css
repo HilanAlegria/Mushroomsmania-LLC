@@ -115,3 +115,19 @@ img {
 .mt-40 { margin-top: 40px; }
 .mb-20 { margin-bottom: 20px; }
 .mb-40 { margin-bottom: 40px; }
+
+/* Transiciones entre páginas */
+.fade-slide-enter-active,
+.fade-slide-leave-active {
+  transition: all 0.35s ease;
+}
+
+.fade-slide-enter-from {
+  opacity: 0;
+  transform: translateY(15px);
+}
+
+.fade-slide-leave-to {
+  opacity: 0;
+  transform: translateY(-15px);
+}
