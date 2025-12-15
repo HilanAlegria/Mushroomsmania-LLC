@@ -1,25 +1,33 @@
 <template>
-  <section class="detalle-producto">
+  <section v-if="producto" class="producto-detalle container">
     <div class="detalle-grid">
-      <img :src="producto.imagen" :alt="producto.nombre" />
+      
+      <!-- IMAGEN -->
+      <div class="imagen">
+        <img :src="producto.imagen" :alt="producto.nombre" />
+      </div>
 
-      <div class="detalle-info">
-        <h2>{{ producto.nombre }}</h2>
-        <p class="precio">$15.00 / lb</p>
-
-        <p class="descripcion">
-          {{ producto.descripcionLarga }}
-        </p>
+      <!-- INFO -->
+      <div class="info">
+        <h1>{{ producto.nombre }}</h1>
+        <p class="descripcion">{{ producto.descripcion }}</p>
 
         <ul class="beneficios">
-          <li v-for="(b, i) in producto.beneficios" :key="i">
-            ✔ {{ b }}
+          <li v-for="(beneficio, index) in producto.beneficios" :key="index">
+            ✔ {{ beneficio }}
           </li>
         </ul>
 
-        <button>Agregar al carrito</button>
+        <div class="precio">$ {{ producto.precio }} / lb</div>
+
+        <button class="btn">Agregar al carrito</button>
       </div>
+
     </div>
+  </section>
+
+  <section v-else class="container text-center">
+    <p>Producto no encontrado</p>
   </section>
 </template>
 
@@ -41,50 +49,76 @@ export default {
     this.producto = productos.find(p => p.slug === slug);
   }
 };
-
 </script>
 
 <style scoped>
-.detalle-producto {
-  padding: 80px 24px;
+.producto-detalle {
+  padding: 80px 20px;
 }
 
+/* GRID */
 .detalle-grid {
-  max-width: 1100px;
-  margin: auto;
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 60px;
+  gap: 50px;
 }
 
-.detalle-grid img {
+@media (min-width: 768px) {
+  .detalle-grid {
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+  }
+}
+
+/* IMAGEN */
+.imagen img {
   width: 100%;
   border-radius: var(--radius);
+  box-shadow: var(--shadow);
 }
 
-.detalle-info h2 {
+/* INFO */
+.info h1 {
   font-size: 3rem;
+  color: var(--verde-herbal);
   margin-bottom: 20px;
 }
 
-.detalle-info .precio {
-  font-size: 1.6rem;
-  color: var(--verde-bosque);
-  margin-bottom: 25px;
-}
-
 .descripcion {
-  color: #d0d0d0;
-  margin-bottom: 30px;
+  font-size: 1.1rem;
+  color: #cfcfcf;
+  margin-bottom: 25px;
 }
 
 .beneficios {
   list-style: none;
-  margin-bottom: 35px;
+  padding: 0;
+  margin-bottom: 30px;
 }
 
 .beneficios li {
   margin-bottom: 10px;
-  color: #cfcfcf;
+  color: #e0ffe0;
+}
+
+/* PRECIO */
+.precio {
+  font-size: 1.6rem;
+  font-weight: 700;
+  margin-bottom: 30px;
+  color: var(--verde-herbal);
+}
+
+/* BOTÓN */
+.btn {
+  background: var(--verde-herbal);
+  color: #041b00;
+  font-weight: 700;
+  padding: 14px 28px;
+  border-radius: var(--radius);
+  box-shadow: 0 0 25px rgba(46, 204, 0, 0.6);
+}
+
+.btn:hover {
+  box-shadow: 0 0 40px rgba(46, 204, 0, 0.85);
 }
 </style>
