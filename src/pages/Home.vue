@@ -19,32 +19,33 @@ export default {
   data() {
     return {
       heroImages: [
-        '/src/assets/images/melena.jpg',
-        '/src/assets/images/piopino.jpg',
-        '/src/assets/images/oyster.jpg'
+        "/images/melena.jpg",
+        "/images/piopino.jpg",
+        "/images/oyster.jpg"
       ],
       currentIndex: 0,
       interval: null
-    }
+    };
   },
   mounted() {
     this.interval = setInterval(() => {
       this.currentIndex =
-        (this.currentIndex + 1) % this.heroImages.length
-    }, 4000)
+        (this.currentIndex + 1) % this.heroImages.length;
+    }, 4000);
   },
   beforeUnmount() {
-    clearInterval(this.interval)
+    clearInterval(this.interval);
   },
   computed: {
     heroStyle() {
       return {
         backgroundImage: `url(${this.heroImages[this.currentIndex]})`
-      }
+      };
     }
   }
-}
+};
 </script>
+
 
 <style scoped>
 .hero {

@@ -1,0 +1,41 @@
+[
+  {
+    "id": 1,
+    "nombre": "Melena de León",
+    "slug": "melena-de-leon",
+    "descripcion": "Apoya la memoria, enfoque y salud cerebral.",
+    "beneficios": [
+      "Mejora la concentración",
+      "Apoya la salud neuronal",
+      "Estimula la claridad mental"
+    ],
+    "precio": "15.00",
+    "imagen": "public/images/melena.jpg"
+  },
+  {
+    "id": 2,
+    "nombre": "Reishi",
+    "slug": "reishi",
+    "descripcion": "Ayuda al descanso, equilibrio y sistema inmune.",
+    "beneficios": [
+      "Reduce el estrés",
+      "Refuerza defensas",
+      "Mejora la calidad del sueño"
+    ],
+    "precio": "15.00",
+    "imagen": "public/images/reishi.jpg"
+  },
+  {
+    "id": 3,
+    "nombre": "Cordyceps",
+    "slug": "cordyceps",
+    "descripcion": "Aumenta energía y resistencia física.",
+    "beneficios": [
+      "Aumenta resistencia",
+      "Mejora oxigenación",
+      "Apoya rendimiento físico"
+    ],
+    "precio": "15.00",
+    "imagen": "public/images/cordyceps.jpg"
+  }
+]

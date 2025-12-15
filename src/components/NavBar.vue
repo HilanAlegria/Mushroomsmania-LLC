@@ -31,70 +31,71 @@ export default {
 }
 </script>
 
-
 <style scoped>
 .sidebar {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 220px;
-  height: 100vh;
-  background: var(--verde-bosque);
-  color: white;
-  padding: 30px 20px;
+  background: linear-gradient(
+    to bottom,
+    #0b2e1a,
+    #061a10
+  );
+  padding: 40px 30px;      
+  width: 260px;            
+  min-height: 100vh;
+  box-shadow: 4px 0 20px rgba(0, 0, 0, 0.6);
 }
 
-/* TÍTULO GRANDE */
+/* ===== TÍTULO ===== */
 .brand {
   color: white;
   cursor: pointer;
   text-align: left;
-  margin-bottom: 50px;
-  line-height: 1;
+  margin-bottom: 60px;       
+  line-height: 1.05;
 }
 
 /* Parte superior */
 .brand-top {
   display: block;
-  font-size: 1.8rem;
+  font-size: 2.2rem;    
   font-weight: 800;
 }
 
 /* Parte inferior */
 .brand-bottom {
   display: block;
-  font-size: 1.8rem;
+  font-size: 2.2rem;
   font-weight: 800;
-  margin-top: 4px; /* poco espacio entre líneas */
+  margin-top: 6px;
 }
 
-/* Hover sutil también para el título */
+/* Hover del título */
 .brand:hover {
   color: var(--verde-herbal);
 }
 
-/* MENÚ */
+/* ===== MENÚ ===== */
 .menu {
   display: flex;
   flex-direction: column;
-  gap: 22px;
+  gap: 30px;      
 }
 
 /* LINKS */
 .menu a {
   cursor: pointer;
-  color: white;
+  color: #e6ffe6;
   text-decoration: none;
 
-  font-size: 1.4rem;
+  font-size: 1.6rem;     
   font-weight: 600;
 
+  padding-left: 10px;    
   transition: transform 0.25s ease, color 0.25s ease;
   transform-origin: left center;
 }
 
 .menu a:hover {
-  transform: scale(1.4);
+  transform: scale(1.3) translateX(6px);
   color: var(--verde-herbal);
 }
 
@@ -102,25 +103,24 @@ export default {
 
 @media (max-width: 1024px) {
   .sidebar {
-    position: relative;
     width: 100%;
-    height: auto;
+    min-height: auto;
+    padding: 25px;
     flex-direction: row;
-    padding: 20px;
   }
 
   .brand {
-    margin-bottom: 20px;
+    margin-bottom: 25px;
   }
 
   .menu {
     flex-direction: row;
     flex-wrap: wrap;
-    gap: 18px;
+    gap: 20px;
   }
 
   .menu a {
-    font-size: 1.2rem;
+    font-size: 1.3rem;
   }
 
   .menu a:hover {
@@ -137,13 +137,12 @@ export default {
 
   .brand-top,
   .brand-bottom {
-    font-size: 1.5rem;
+    font-size: 1.6rem;
   }
 
   .menu a {
-    font-size: 1.1rem;
+    font-size: 1.2rem;
   }
 }
-
 </style>
 

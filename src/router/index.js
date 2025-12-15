@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router';
 
 import Home from '../pages/Home.vue';
 import Productos from '../pages/Productos.vue';
+import ProductoDetalle from '@/pages/ProductoDetalle.vue';
 import Contacto from '../pages/Contacto.vue';
 import Recetas from '../pages/Recetas.vue';
 import Carrito from '../pages/Carrito.vue';
@@ -22,7 +23,19 @@ const routes = [
 
 const router = createRouter({
   history: createWebHistory(),
-  routes
+  routes: [
+    { path: "/", component: Home },
+    { path: "/productos", component: Productos },
+
+    {
+      path: "/productos/:slug",
+      component: ProductoDetalle
+    },
+
+    { path: "/recetas", component: Recetas },
+    { path: "/carrito", component: Carrito },
+    { path: "/contacto", component: Contacto }
+  ]
 });
 
 export default router;

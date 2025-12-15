@@ -3,10 +3,11 @@
     <h2 class="section-title">Nuestros Productos</h2>
 
     <div class="productos-grid">
-      <div
-        class="producto-card"
+      <router-link
+        class="producto-card card"
         v-for="producto in productos"
         :key="producto.id"
+        :to="`/productos/${producto.slug}`"
       >
         <img :src="producto.imagen" :alt="producto.nombre" />
 
@@ -15,101 +16,86 @@
           <p>{{ producto.descripcion }}</p>
 
           <div class="producto-footer">
-            <span class="precio">${{ producto.precio }}</span>
+            <span class="precio">$15.00 / lb</span>
             <button>Agregar</button>
           </div>
         </div>
-      </div>
+      </router-link>
     </div>
   </section>
 </template>
 
-<script>
-import melena from "@/assets/images/melena.jpg";
-import reishi from "@/assets/images/reishi.jpg";
-import cordyceps from "@/assets/images/cordyceps.jpg";
 
+<script>
 export default {
   name: "Productos",
+
   data() {
-  return {
-    productos: [
-      {
-        id: 1,
-        nombre: "Melena de León",
-        descripcion: "Apoya la memoria, enfoque y salud cerebral.",
-        precio: "15.00 / lb",
-        imagen: melena
-      },
-      {
-        id: 2,
-        nombre: "Reishi",
-        descripcion: "Ayuda al descanso, equilibrio y sistema inmune.",
-        precio: "15.00 / lb",
-        imagen: reishi
-      },
-      {
-        id: 3,
-        nombre: "Cordyceps",
-        descripcion: "Aumenta energía y resistencia física.",
-        precio: "15.00 / lb",
-        imagen: cordyceps
-      }
-    ]
-  };
-}
+    return {
+      productos: []
+    };
+  },
+
+  async mounted() {
+    const response = await fetch("/data/productos.json");
+    this.productos = await response.json();
+  }
 };
+
 </script>
 
 <style scoped>
 .productos {
-  padding: 60px;
+  padding: 70px 24px;
 }
 
 .section-title {
-  font-size: 2.5rem;
-  margin-bottom: 40px;
+  font-size: 2.8rem;
+  margin-bottom: 50px;
+  color: var(--verde-bosque);
 }
 
 .productos-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 30px;
+  gap: 35px;
 }
 
+/* CARD oscura */
 .producto-card {
-  background: white;
+  background: #0d120f;
   border-radius: 16px;
   overflow: hidden;
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.producto-card:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.15);
-}
-
+/* Imagen */
 .producto-card img {
   width: 100%;
   height: 200px;
   object-fit: cover;
 }
 
+.producto-card {
+  text-decoration: none;
+  color: inherit;
+}
+/* Info */
 .producto-info {
-  padding: 20px;
+  padding: 22px;
 }
 
 .producto-info h3 {
-  font-size: 1.4rem;
-  margin-bottom: 10px;
+  font-size: 1.5rem;
+  margin-bottom: 12px;
+  color: var(--verde-bosque);
 }
 
 .producto-info p {
-  color: #555;
-  margin-bottom: 20px;
+  color: #cfcfcf;
+  margin-bottom: 22px;
 }
 
+/* Footer */
 .producto-footer {
   display: flex;
   justify-content: space-between;
@@ -117,23 +103,26 @@ export default {
 }
 
 .precio {
-  font-size: 1.3rem;
+  font-size: 1.4rem;
   font-weight: 700;
   color: var(--verde-bosque);
 }
 
+/* Botón */
 button {
-  padding: 10px 16px;
+  padding: 10px 18px;
   border: none;
   border-radius: 10px;
-  background: var(--verde-bosque);
-  color: white;
+  background: var(--verde-herbal);
+  color: #041b00;
   cursor: pointer;
-  transition: transform 0.2s ease, background 0.2s ease;
+  font-weight: 700;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: 0 0 18px rgba(46, 204, 0, 0.45);
 }
 
 button:hover {
   transform: scale(1.08);
-  background: var(--verde-herbal);
+  box-shadow: 0 0 30px rgba(46, 204, 0, 0.75);
 }
 </style>
