@@ -1,13 +1,11 @@
 <template>
   <div class="app-layout">
-    <!-- Menú lateral -->
     <NavBar />
 
-    <!-- Contenido principal -->
     <main class="content">
       <router-view v-slot="{ Component }">
         <transition name="fade-slide" mode="out-in">
-          <component :is="Component" />
+          <component :is="Component" :key="$route.fullPath" />
         </transition>
       </router-view>
 
@@ -26,7 +24,7 @@ export default {
     NavBar,
     Footer
   }
-}
+};
 </script>
 
 <style>
@@ -34,15 +32,13 @@ export default {
   display: flex;
 }
 
-/* Espacio para el menú lateral */
 .content {
   margin-left: 220px;
   width: calc(100% - 220px);
   min-height: 100vh;
 }
 
-/* ===== RESPONSIVE ===== */
-
+/* Responsive */
 @media (max-width: 1024px) {
   .app-layout {
     flex-direction: column;
@@ -53,5 +49,4 @@ export default {
     width: 100%;
   }
 }
-
 </style>

@@ -1,124 +1,65 @@
 <template>
-  <section v-if="producto" class="producto-detalle container">
-    <div class="detalle-grid">
-      
-      <!-- IMAGEN -->
-      <div class="imagen">
-        <img :src="producto.imagen" :alt="producto.nombre" />
+  <section v-if="producto" class="py-24 px-6 container-app">
+    <div class="grid gap-14 md:grid-cols-2 items-center">
+
+      <!-- Imagen controlada -->
+      <div class="flex justify-center">
+        <div class="relative w-full max-w-md overflow-hidden rounded-2xl">
+          <img
+            :src="producto.imagen"
+            :alt="producto.nombre"
+            class="w-full h-[320px] object-cover"
+          />
+        </div>
       </div>
 
-      <!-- INFO -->
-      <div class="info">
-        <h1>{{ producto.nombre }}</h1>
-        <p class="descripcion">{{ producto.descripcion }}</p>
+      <!-- Info -->
+      <div>
+        <h1 class="text-3xl md:text-4xl font-bold text-[#2ecc00] mb-6">
+          {{ producto.nombre }}
+        </h1>
 
-        <ul class="beneficios">
-          <li v-for="(beneficio, index) in producto.beneficios" :key="index">
+        <p class="text-gray-300 text-base md:text-lg mb-8 max-w-prose">
+          {{ producto.descripcion }}
+        </p>
+
+        <ul class="space-y-3 mb-8">
+          <li
+            v-for="(beneficio, index) in producto.beneficios"
+            :key="index"
+            class="text-green-200"
+          >
             ✔ {{ beneficio }}
           </li>
         </ul>
 
-        <div class="precio">$ {{ producto.precio }} / lb</div>
+        <div class="text-2xl font-bold text-[#2ecc00] mb-8">
+          $ {{ producto.precio }} / lb
+        </div>
 
-        <button class="btn">Agregar al carrito</button>
+        <button class="btn-primary">
+          Agregar al carrito
+        </button>
       </div>
 
     </div>
   </section>
-
-  <section v-else class="container text-center">
-    <p>Producto no encontrado</p>
-  </section>
 </template>
+
+
 
 <script>
 export default {
   name: "ProductoDetalle",
-
   data() {
-    return {
-      producto: null
-    };
+    return { producto: null }
   },
-
   async mounted() {
-    const response = await fetch("/data/productos.json");
-    const productos = await response.json();
-
-    const slug = this.$route.params.slug;
-    this.producto = productos.find(p => p.slug === slug);
+    const res = await fetch("/data/productos.json")
+    const productos = await res.json()
+    this.producto = productos.find(
+      p => p.slug === this.$route.params.slug
+    )
   }
-};
+}
 </script>
-
-<style scoped>
-.producto-detalle {
-  padding: 80px 20px;
-}
-
-/* GRID */
-.detalle-grid {
-  display: grid;
-  gap: 50px;
-}
-
-@media (min-width: 768px) {
-  .detalle-grid {
-    grid-template-columns: 1fr 1fr;
-    align-items: center;
-  }
-}
-
-/* IMAGEN */
-.imagen img {
-  width: 100%;
-  border-radius: var(--radius);
-  box-shadow: var(--shadow);
-}
-
-/* INFO */
-.info h1 {
-  font-size: 3rem;
-  color: var(--verde-herbal);
-  margin-bottom: 20px;
-}
-
-.descripcion {
-  font-size: 1.1rem;
-  color: #cfcfcf;
-  margin-bottom: 25px;
-}
-
-.beneficios {
-  list-style: none;
-  padding: 0;
-  margin-bottom: 30px;
-}
-
-.beneficios li {
-  margin-bottom: 10px;
-  color: #e0ffe0;
-}
-
-/* PRECIO */
-.precio {
-  font-size: 1.6rem;
-  font-weight: 700;
-  margin-bottom: 30px;
-  color: var(--verde-herbal);
-}
-
-/* BOTÓN */
-.btn {
-  background: var(--verde-herbal);
-  color: #041b00;
-  font-weight: 700;
-  padding: 14px 28px;
-  border-radius: var(--radius);
-  box-shadow: 0 0 25px rgba(46, 204, 0, 0.6);
-}
-
-.btn:hover {
-  box-shadow: 0 0 40px rgba(46, 204, 0, 0.85);
-}
-</style>

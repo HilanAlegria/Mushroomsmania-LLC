@@ -1,62 +1,54 @@
 <template>
-  <div class="product-card">
-    <img :src="product.image" :alt="product.name" />
+  <router-link
+    :to="`/productos/${producto.slug}`"
+    class="group bg-[#0d120f] rounded-2xl overflow-hidden border border-green-500/10
+           shadow-lg hover:-translate-y-2 hover:shadow-green-500/30 transition"
+  >
+    <img
+      :src="producto.imagen"
+      :alt="producto.nombre"
+      class="h-48 w-full object-cover"
+  />
 
-    <div class="info">
-      <h3>{{ product.name }}</h3>
-      <p class="benefit">{{ product.benefit }}</p>
-      <p class="price">${{ product.price }}</p>
+    <div class="p-6">
+      <h3 class="text-xl font-semibold text-[#39ff14] mb-3">
+        {{ producto.nombre }}
+      </h3>
 
-      <button @click="$emit('add-to-cart', product)">
-        Agregar al carrito
-      </button>
+      <p class="text-gray-300 mb-6">
+        {{ producto.descripcion }}
+      </p>
+
+      <div class="flex justify-between items-center">
+        <span class="text-lg font-bold text-[#39ff14]">
+          ${{ producto.precio }} / lb
+        </span>
+
+        <button
+          @click.stop="agregar"
+          class="bg-[#2ecc00] text-black font-bold px-4 py-2 rounded-lg
+                 shadow-[0_0_18px_rgba(46,204,0,0.45)]
+                 group-hover:shadow-[0_0_30px_rgba(46,204,0,0.75)]
+                 transition transform group-hover:scale-105"
+        >
+          Agregar
+        </button>
+      </div>
     </div>
-  </div>
+  </router-link>
 </template>
 
 <script>
 export default {
-  name: "ProductCard",
+  name: "CardProducto",
   props: {
-    product: Object
+    producto: Object
+  },
+  emits: ["add"],
+  methods: {
+    agregar() {
+      this.$emit("add", this.producto)
+    }
   }
 }
 </script>
-
-<style scoped>
-.product-card {
-  display: flex;
-  flex-direction: column;
-  background: var(--crema-natural);
-  border-radius: var(--radius);
-  overflow: hidden;
-  box-shadow: var(--shadow);
-  transition: transform 0.3s;
-}
-
-.product-card:hover {
-  transform: translateY(-6px);
-}
-
-.product-card img {
-  height: 220px;
-  width: 100%;
-  object-fit: cover;
-}
-
-.info {
-  padding: 20px;
-}
-
-.benefit {
-  margin: 10px 0;
-  font-size: 0.95rem;
-}
-
-.price {
-  font-size: 1.2rem;
-  font-weight: bold;
-  color: var(--verde-herbal);
-  margin-bottom: 15px;
-}
-</style>

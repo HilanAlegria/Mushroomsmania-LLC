@@ -1,79 +1,42 @@
 <template>
-  <footer class="footer">
-    <div class="footer-container">
+  <footer class="bg-[#8b6f47] text-white mt-24">
+    <div class="max-w-7xl mx-auto px-6 py-10 grid gap-8 md:grid-cols-3">
 
-      <div class="footer-left">
-        <h2>MUSHROOMANIA🍄</h2>
-        <p>Hongos naturales para tu salud y bienestar.</p>
+      <!-- Marca -->
+      <div>
+        <h3 class="font-bold text-lg mb-2">
+          MUSHROOMANIA 🍄
+        </h3>
+        <p class="text-sm text-white/80 max-w-xs">
+          Hongos naturales para tu salud y bienestar.
+        </p>
       </div>
 
-      <div class="footer-middle">
-        <h3>Enlaces</h3>
-        <a @click="$router.push('/')">Inicio</a>
-        <a @click="$router.push('/productos')">Productos</a>
-        <a @click="$router.push('/recetas')">Recetas</a>
-        <a @click="$router.push('/contacto')">Contacto</a>
+      <!-- Enlaces -->
+      <div>
+        <h4 class="font-semibold mb-3">Enlaces</h4>
+        <ul class="space-y-2 text-sm text-white/80">
+          <li><router-link to="/" class="hover:text-white">Inicio</router-link></li>
+          <li><router-link to="/productos" class="hover:text-white">Productos</router-link></li>
+          <li><router-link to="/recetas" class="hover:text-white">Recetas</router-link></li>
+          <li><router-link to="/contacto" class="hover:text-white">Contacto</router-link></li>
+        </ul>
       </div>
 
-      <div class="footer-right">
-        <h3>Contáctanos</h3>
-        <a href="https://wa.me/57TU_NUMERO" target="_blank">WhatsApp</a>
-        <a href="#" target="_blank">Instagram</a>
-        <a href="#" target="_blank">Facebook</a>
+      <!-- Contacto -->
+      <div>
+        <h4 class="font-semibold mb-3">Contáctanos</h4>
+        <ul class="space-y-2 text-sm text-white/80">
+          <li>WhatsApp</li>
+          <li>Instagram</li>
+          <li>Facebook</li>
+        </ul>
       </div>
 
     </div>
 
-    <div class="footer-bottom">
-      © 2025 MUSHROOMANIA🍄 CORP. Todos los derechos reservados.
+    <div class="border-t border-white/20 text-center py-4 text-xs text-white/70">
+      © 2025 MUSHROOMANIA 🍄 — Todos los derechos reservados
     </div>
   </footer>
 </template>
-
-<script>
-export default {
-  name: "Footer",
-};
-</script>
-
-<style scoped>
-.footer {
-  background: #8B6F47;
-  color: white;
-  padding: 40px 20px 10px;
-}
-
-.footer-container {
-  max-width: 1300px;
-  margin: auto;
-  display: grid;
-  gap: 40px;
-}
-
-@media(min-width: 768px) {
-  .footer-container {
-    grid-template-columns: repeat(3, 1fr);
-  }
-}
-
-.footer-left h2 {
-  margin-bottom: 10px;
-}
-
-.footer-middle a,
-.footer-right a {
-  display: block;
-  color: white;
-  text-decoration: none;
-  margin-top: 5px;
-  font-size: 0.95rem;
-}
-
-.footer-bottom {
-  text-align: center;
-  margin-top: 30px;
-  font-size: 0.85rem;
-  border-top: 1px solid rgba(255, 255, 255, 0.3);
-  padding-top: 10px;
-}
-</style>
