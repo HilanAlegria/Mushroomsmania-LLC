@@ -1,210 +1,78 @@
 <template>
-  <section class="carrito container">
-    <h1 class="titulo">🛒 Tu carrito</h1>
+  <section class="py-24 px-6 max-w-5xl mx-auto">
+    <h2 class="text-4xl font-bold text-verde mb-10 text-center">
+      Tu carrito
+    </h2>
 
-    <!-- CARRITO VACÍO -->
-    <div v-if="carritoVacio" class="carrito-vacio">
-      <p>Tu carrito está vacío por ahora</p>
+    <!-- Carrito vacío -->
+    <div
+      v-if="carrito.items.length === 0"
+      class="text-center card-dark"
+    >
+      <p class="text-gray-300 mb-6">
+        Tu carrito está vacío
+      </p>
 
-      <div class="acciones">
-        <router-link to="/productos" class="btn">
-          Ver productos
-        </router-link>
-
-        <router-link to="/recetas" class="btn btn-outline">
-          Explorar recetas
-        </router-link>
-      </div>
+      <router-link to="/productos" class="btn-primary">
+        Ver productos
+      </router-link>
     </div>
 
-    <!-- CARRITO CON ITEMS (estructura preparada) -->
-    <div v-else class="carrito-contenido">
-      <div class="items">
-        <div class="item" v-for="item in items" :key="item.id">
-          <img :src="item.imagen" :alt="item.nombre" />
+    <!-- Carrito con productos -->
+    <div v-else class="space-y-6">
+      <div
+        v-for="item in carrito.items"
+        :key="item.id + item.tipo"
+        class="flex items-center gap-6 card-dark"
+      >
+        <img
+          :src="item.imagen"
+          :alt="item.nombre"
+          class="w-20 h-20 object-cover rounded-xl"
+        />
 
-          <div class="info">
-            <h3>{{ item.nombre }}</h3>
-            <p>{{ item.tipo }}</p>
-          </div>
-
-          <div class="precio">
-            ${{ item.precio }}
-          </div>
+        <div class="flex-1">
+          <h3 class="text-lg font-semibold text-verde">
+            {{ item.nombre }}
+          </h3>
+          <p class="text-sm text-gray-400">
+            {{ item.tipo }}
+          </p>
         </div>
+
+        <span class="font-bold text-verde">
+          $ {{ item.precio }}
+        </span>
+
+        <button
+          @click="carrito.eliminarProducto(item.id)"
+          class="text-red-400 hover:text-red-500 font-bold"
+        >
+          ✕
+        </button>
       </div>
 
-      <div class="resumen">
-        <p>
-          <strong>Total:</strong>
-          ${{ total }}
+      <!-- Total -->
+      <div class="text-right mt-10">
+        <p class="text-xl text-gray-300">
+          Total:
+          <span class="font-bold text-verde">
+            $ {{ carrito.total }}
+          </span>
         </p>
-
-        <button class="btn disabled">
-          Finalizar compra (próximamente)
-        </button>
       </div>
     </div>
   </section>
 </template>
 
 <script>
+import { useCarritoStore } from "@/stores/carrito";
+
 export default {
   name: "Carrito",
-  data() {
-    return {
-      // Más adelante esto vendrá de un store (Pinia / Vuex)
-      items: []
-    };
-  },
-  computed: {
-    carritoVacio() {
-      return this.items.length === 0;
-    },
-    total() {
-      return this.items.reduce((acc, item) => acc + item.precio, 0);
-    }
+  setup() {
+    const carrito = useCarritoStore();
+    return { carrito };
   }
 };
 </script>
-
-<style scoped>
-.carrito {
-  padding: 80px 40px;
-}
-
-/* TÍTULO */
-.titulo {
-  font-size: 3rem;
-  color: var(--verde-herbal);
-  margin-bottom: 40px;
-}
-
-/* ===== CARRITO VACÍO ===== */
-
-.carrito-vacio {
-  background: #0d120f;
-  padding: 50px;
-  border-radius: var(--radius);
-  text-align: center;
-  box-shadow: var(--shadow);
-}
-
-.carrito-vacio p {
-  font-size: 1.4rem;
-  margin-bottom: 30px;
-  color: #e6ffe6;
-}
-
-.acciones {
-  display: flex;
-  justify-content: center;
-  gap: 20px;
-  flex-wrap: wrap;
-}
-
-/* ===== BOTONES ===== */
-
-.btn {
-  padding: 14px 28px;
-  background: var(--verde-herbal);
-  color: #041b00;
-  font-weight: 700;
-  text-decoration: none;
-  border-radius: 12px;
-  box-shadow: 0 0 18px rgba(46, 204, 0, 0.45);
-  transition: all 0.3s ease;
-}
-
-.btn:hover {
-  box-shadow: 0 0 28px rgba(46, 204, 0, 0.75);
-}
-
-.btn-outline {
-  background: transparent;
-  color: var(--verde-herbal);
-  border: 2px solid var(--verde-herbal);
-  box-shadow: none;
-}
-
-.btn-outline:hover {
-  background: var(--verde-herbal);
-  color: #041b00;
-}
-
-/* ===== CARRITO CON ITEMS ===== */
-
-.carrito-contenido {
-  display: grid;
-  grid-template-columns: 2fr 1fr;
-  gap: 40px;
-}
-
-.items {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-}
-
-.item {
-  display: grid;
-  grid-template-columns: 80px 1fr auto;
-  gap: 20px;
-  align-items: center;
-  background: #0d120f;
-  padding: 20px;
-  border-radius: var(--radius);
-  box-shadow: var(--shadow);
-}
-
-.item img {
-  width: 80px;
-  height: 80px;
-  object-fit: cover;
-  border-radius: 10px;
-}
-
-.item h3 {
-  color: #e6ffe6;
-  margin-bottom: 5px;
-}
-
-.item p {
-  color: #cfcfcf;
-  font-size: 0.95rem;
-}
-
-.precio {
-  font-weight: 700;
-  color: var(--verde-herbal);
-}
-
-/* ===== RESUMEN ===== */
-
-.resumen {
-  background: #0d120f;
-  padding: 30px;
-  border-radius: var(--radius);
-  box-shadow: var(--shadow);
-  height: fit-content;
-}
-
-.resumen p {
-  font-size: 1.4rem;
-  margin-bottom: 20px;
-  color: #e6ffe6;
-}
-
-.btn.disabled {
-  opacity: 0.5;
-  pointer-events: none;
-}
-
-/* RESPONSIVE */
-
-@media (max-width: 1024px) {
-  .carrito-contenido {
-    grid-template-columns: 1fr;
-  }
-}
-</style>

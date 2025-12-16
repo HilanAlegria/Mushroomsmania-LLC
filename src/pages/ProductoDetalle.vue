@@ -37,7 +37,7 @@
           $ {{ producto.precio }} / lb
         </div>
 
-        <button class="btn-primary">
+        <button class="btn-primary" @click="agregarAlCarrito">
           Agregar al carrito
         </button>
       </div>
@@ -46,20 +46,32 @@
   </section>
 </template>
 
-
-
 <script>
+import { useCarritoStore } from "@/stores/carrito";
+
 export default {
   name: "ProductoDetalle",
+
   data() {
-    return { producto: null }
+    return {
+      producto: null
+    };
   },
+
   async mounted() {
-    const res = await fetch("/data/productos.json")
-    const productos = await res.json()
+    const res = await fetch("/data/productos.json");
+    const productos = await res.json();
+
     this.producto = productos.find(
       p => p.slug === this.$route.params.slug
-    )
+    );
+  },
+
+  methods: {
+    agregarAlCarrito() {
+      const carrito = useCarritoStore();
+      carrito.agregarProducto(this.producto);
+    }
   }
-}
+};
 </script>

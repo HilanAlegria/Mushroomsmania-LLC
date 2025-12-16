@@ -5,7 +5,7 @@
   >
     <div class="grid md:grid-cols-2 gap-14 items-start">
 
-      <!-- Imagen controlada -->
+      <!-- Imagen -->
       <div class="flex justify-center">
         <img
           :src="receta.imagen"
@@ -38,7 +38,7 @@
         </div>
 
         <!-- Preparación -->
-        <div>
+        <div class="mb-10">
           <h2 class="text-2xl font-bold text-verde mb-3">
             Preparación
           </h2>
@@ -49,12 +49,16 @@
             </li>
           </ol>
         </div>
+
+        <!-- BOTÓN CARRITO -->
+        <button class="btn-primary" @click="agregarAlCarrito">
+          Agregar al carrito
+        </button>
       </div>
 
     </div>
   </section>
 
-  <!-- Fallback -->
   <section
     v-else
     class="py-24 text-center text-gray-400"
@@ -64,19 +68,38 @@
 </template>
 
 <script>
+import { useCarritoStore } from "@/stores/carrito";
+
 export default {
   name: "RecetaDetalle",
+
   data() {
     return {
       receta: null
-    }
+    };
   },
+
   async mounted() {
-    const res = await fetch("/data/recetas.json")
-    const recetas = await res.json()
+    const res = await fetch("/data/recetas.json");
+    const recetas = await res.json();
+
     this.receta = recetas.find(
       r => r.slug === this.$route.params.slug
-    )
+    );
+  },
+
+  methods: {
+    agregarAlCarrito() {
+      const carrito = useCarritoStore();
+
+      carrito.items.push({
+        id: this.receta.id,
+        nombre: this.receta.nombre,
+        precio: 0, // receta no se vende (por ahora)
+        imagen: this.receta.imagen,
+        tipo: "Receta"
+      });
+    }
   }
-}
+};
 </script>

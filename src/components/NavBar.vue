@@ -16,22 +16,38 @@
       <router-link to="/contacto">Contacto</router-link>
 
       <!-- CARRITO -->
-      <router-link to="/carrito" class="carrito-link">
+      <router-link to="/carrito" class="carrito-link relative">
         🛒 Carrito
+
+        <!-- BADGE -->
+        <span
+          v-if="carrito.cantidad > 0"
+          class="badge"
+        >
+          {{ carrito.cantidad }}
+        </span>
       </router-link>
     </nav>
   </aside>
 </template>
 
 <script>
+import { useCarritoStore } from "@/stores/carrito";
+
 export default {
   name: "NavBar",
+
+  setup() {
+    const carrito = useCarritoStore();
+    return { carrito };
+  },
+
   methods: {
     goTo(route) {
-      this.$router.push(route)
+      this.$router.push(route);
     }
   }
-}
+};
 </script>
 
 <style scoped>
@@ -86,6 +102,7 @@ export default {
 
 /* ===== CARRITO ===== */
 .carrito-link {
+  position: relative;
   margin-top: 30px;
   padding: 14px 16px;
   border-radius: 12px;
@@ -99,6 +116,20 @@ export default {
 .carrito-link:hover {
   transform: scale(1.15);
   box-shadow: 0 0 28px rgba(46, 204, 0, 0.55);
+}
+
+/* ===== BADGE ===== */
+.badge {
+  position: absolute;
+  top: -8px;
+  right: -10px;
+  background: var(--verde-herbal);
+  color: #000;
+  font-size: 0.9rem;
+  font-weight: 800;
+  padding: 4px 8px;
+  border-radius: 999px;
+  box-shadow: 0 0 10px rgba(57, 255, 20, 0.8);
 }
 
 /* LINK ACTIVO */
