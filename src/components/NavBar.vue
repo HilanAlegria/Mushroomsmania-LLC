@@ -2,20 +2,20 @@
   <aside class="sidebar">
     <!-- TÍTULO / MARCA -->
     <h1 class="brand" @click="goTo('/')">
-      <span class="brand-top">Mushroo</span>
-      <span class="brand-bottom">Mania</span>
+      <span class="brand-top">MUSHROO</span>
+      <span class="brand-bottom">MANIA🍄</span>
     </h1>
-
 
     <!-- MENÚ -->
     <nav class="menu">
-      <a @click="goTo('/')">Inicio</a>
-      <a @click="goTo('/productos')">Productos</a>
-      <a @click="goTo('/beneficios')">Beneficios</a>
-      <a @click="goTo('/recetas')">Recetas</a>
-      <a @click="goTo('/contacto')">Contacto</a>
-      <a @click="goTo('/carrito')">Carrito</a>
+      <router-link to="/">Inicio</router-link>
+      <router-link to="/productos">Productos</router-link>
+      <router-link to="/sobre-nosotros">Nosotros</router-link>
+      <router-link to="/beneficios">Beneficios</router-link>
+      <router-link to="/recetas">Recetas</router-link>
+      <router-link to="/contacto">Contacto</router-link>
     </nav>
+
   </aside>
 </template>
 
@@ -94,8 +94,8 @@ export default {
   transform-origin: left center;
 }
 
-.menu a:hover {
-  transform: scale(1.3) translateX(6px);
+.menu a:hover:not(.router-link-exact-active) {
+  transform: scale(1.4);
   color: var(--verde-herbal);
 }
 
@@ -144,5 +144,13 @@ export default {
     font-size: 1.2rem;
   }
 }
+
+/* LINK ACTIVO */
+.menu a.router-link-exact-active {
+  color: var(--verde-herbal);
+  transform: scale(1.35);
+  text-shadow: 0 0 12px rgba(57, 255, 20, 0.65);
+}
+
 </style>
 

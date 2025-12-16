@@ -10,7 +10,7 @@
       "Estimula la claridad mental"
     ],
     "precio": "15.00",
-    "imagen": "public/images/melena.jpg"
+    "imagen": "/images/melena.jpg"
   },
   {
     "id": 2,
@@ -23,7 +23,7 @@
       "Mejora la calidad del sueño"
     ],
     "precio": "15.00",
-    "imagen": "public/images/reishi.jpg"
+    "imagen": "/images/reishi.jpg"
   },
   {
     "id": 3,
@@ -36,6 +36,6 @@
       "Apoya rendimiento físico"
     ],
     "precio": "15.00",
-    "imagen": "public/images/cordyceps.jpg"
+    "imagen": "/images/cordyceps.jpg"
   }
 ]

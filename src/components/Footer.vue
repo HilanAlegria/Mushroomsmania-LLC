@@ -3,7 +3,7 @@
     <div class="footer-container">
 
       <div class="footer-left">
-        <h2>MushrooMania</h2>
+        <h2>MUSHROOMANIA🍄</h2>
         <p>Hongos naturales para tu salud y bienestar.</p>
       </div>
 
@@ -25,7 +25,7 @@
     </div>
 
     <div class="footer-bottom">
-      © 2025 MushrooMania. Todos los derechos reservados.
+      © 2025 MUSHROOMANIA🍄 CORP. Todos los derechos reservados.
     </div>
   </footer>
 </template>
