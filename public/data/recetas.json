@@ -1,0 +1,38 @@
+[
+  {
+    "id": 1,
+    "nombre": "Té de Melena de León",
+    "slug": "te-melena-de-leon",
+    "descripcion": "Ideal para la concentración y la salud cognitiva.",
+    "imagen": "/images/melena.jpg",
+    "ingredientes": [
+      "1 g de Melena de León seca",
+      "1 taza de agua caliente",
+      "Miel (opcional)"
+    ],
+    "pasos": [
+      "Hervir el agua",
+      "Agregar la Melena de León",
+      "Reposar 10 minutos",
+      "Colar y servir"
+    ]
+  },
+  {
+    "id": 2,
+    "nombre": "Infusión de Reishi",
+    "slug": "infusion-de-reishi",
+    "descripcion": "Receta relajante para el equilibrio del cuerpo.",
+    "imagen": "/images/reishi.jpg",
+    "ingredientes": [
+      "2 g de Reishi",
+      "1 taza de agua",
+      "Canela (opcional)"
+    ],
+    "pasos": [
+      "Hervir el agua",
+      "Agregar el Reishi",
+      "Cocinar a fuego bajo 20 minutos",
+      "Colar y servir"
+    ]
+  }
+]
