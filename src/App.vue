@@ -1,17 +1,20 @@
 <template>
   <div class="app-layout">
+    <!-- Menú lateral -->
     <NavBar />
 
+    <!-- Contenido principal -->
     <main class="content">
       <router-view v-slot="{ Component }">
         <transition name="fade-slide" mode="out-in">
           <component :is="Component" :key="$route.fullPath" />
         </transition>
       </router-view>
-
-      <Footer />
     </main>
   </div>
+
+  <!-- Footer FUERA del content -->
+  <Footer />
 </template>
 
 <script>
@@ -32,6 +35,7 @@ export default {
   display: flex;
 }
 
+/* Contenido desplazado por el sidebar */
 .content {
   margin-left: 220px;
   width: calc(100% - 220px);

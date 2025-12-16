@@ -1,6 +1,17 @@
 <template>
-  <section class="hero" :style="heroStyle">
+  <section class="hero">
+    <!-- Slides -->
+    <div
+      v-for="(img, index) in heroImages"
+      :key="img"
+      class="hero-slide"
+      :class="{ active: currentIndex === index }"
+      :style="{ backgroundImage: `url(${img})` }"
+    ></div>
+
+    <!-- Overlay -->
     <div class="overlay"></div>
+
     <!-- Indicadores -->
     <div class="hero-indicators">
       <span
@@ -11,7 +22,6 @@
     </div>
   </section>
 </template>
-
 
 <script>
 export default {
@@ -31,58 +41,47 @@ export default {
     this.interval = setInterval(() => {
       this.currentIndex =
         (this.currentIndex + 1) % this.heroImages.length;
-    }, 4000);
+    }, 5000);
   },
   beforeUnmount() {
     clearInterval(this.interval);
-  },
-  computed: {
-    heroStyle() {
-      return {
-        backgroundImage: `url(${this.heroImages[this.currentIndex]})`
-      };
-    }
   }
 };
 </script>
 
-
 <style scoped>
 .hero {
-  height: 100vh;
+  position: relative;
   width: 100%;
+  min-height: calc(100vh - 60px); /* ajusta si tu navbar cambia */
+  overflow: hidden;
+}
+
+/* Slides */
+.hero-slide {
+  position: absolute;
+  inset: 0;
   background-size: cover;
   background-position: center;
-  position: relative;
-  transition: background-image 1s ease-in-out;
+  opacity: 0;
+  transition: opacity 1.2s ease-in-out;
 }
 
-.hero-title {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  color: white;
-  font-size: 4.5rem;
-  font-weight: 700;
-  letter-spacing: 2px;
-  z-index: 2;
-  text-align: center;
+.hero-slide.active {
+  opacity: 1;
+  z-index: 1;
 }
 
-/* Responsive */
-@media (max-width: 768px) {
-  .hero-title {
-    font-size: 3rem;
-  }
-}
-
-
-/* Oscurecido elegante */
+/* Overlay elegante */
 .overlay {
   position: absolute;
   inset: 0;
-  background: rgba(0, 0, 0, 0.35);
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.35),
+    rgba(0, 0, 0, 0.55)
+  );
+  z-index: 2;
 }
 
 /* Indicadores */
@@ -92,19 +91,31 @@ export default {
   right: 40px;
   display: flex;
   gap: 10px;
-  z-index: 2;
+  z-index: 3;
 }
 
 .hero-indicators span {
   width: 10px;
   height: 10px;
   border-radius: 50%;
-  background: rgba(255,255,255,0.4);
-  transition: all 0.3s;
+  background: rgba(255, 255, 255, 0.4);
+  transition: all 0.3s ease;
 }
 
 .hero-indicators span.active {
   background: white;
-  transform: scale(1.2);
+  transform: scale(1.3);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .hero {
+    min-height: 70vh;
+  }
+
+  .hero-indicators {
+    right: 20px;
+    bottom: 20px;
+  }
 }
 </style>
