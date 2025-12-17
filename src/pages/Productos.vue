@@ -17,27 +17,34 @@
 
 <script>
 import ProductCard from "@/components/ProductCard.vue";
-import { useCarritoStore } from "@/stores/carrito";
 import { useProductosStore } from "@/stores/productos";
+import { useCarritoStore } from "@/stores/carrito";
 
 export default {
   name: "Productos",
   components: { ProductCard },
 
-  setup() {
-    const carrito = useCarritoStore();
-    const productosStore = useProductosStore();
-
-    productosStore.cargarProductos();
-
-    const agregarAlCarrito = (producto) => {
-      carrito.agregarProducto(producto);
-    };
-
+  data() {
     return {
-      productos: productosStore.productos,
-      agregarAlCarrito
+      productosStore: useProductosStore()
     };
+  },
+
+  async mounted() {
+    await this.productosStore.cargarProductos();
+  },
+
+  computed: {
+    productos() {
+      return this.productosStore.productos;
+    }
+  },
+
+  methods: {
+    agregarAlCarrito(producto) {
+      const carrito = useCarritoStore();
+      carrito.agregarProducto(producto);
+    }
   }
 };
 </script>

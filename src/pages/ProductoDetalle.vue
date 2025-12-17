@@ -57,24 +57,29 @@ import { useCarritoStore } from "@/stores/carrito";
 export default {
   name: "ProductoDetalle",
 
-  setup(props, { attrs }) {
-    const productosStore = useProductosStore();
-    const carrito = useCarritoStore();
-
-    productosStore.cargarProductos();
-
-    const producto = computed(() =>
-      productosStore.obtenerPorSlug(attrs.route.params.slug)
-    );
-
-    const agregarAlCarrito = () => {
-      carrito.agregarProducto(producto.value);
-    };
-
+  data() {
     return {
-      producto,
-      agregarAlCarrito
+      productosStore: useProductosStore()
     };
+  },
+
+  async mounted() {
+    await this.productosStore.cargarProductos();
+  },
+
+  computed: {
+    producto() {
+      return this.productosStore.obtenerPorSlug(
+        this.$route.params.slug
+      );
+    }
+  },
+
+  methods: {
+    agregarAlCarrito() {
+      const carrito = useCarritoStore();
+      carrito.agregarProducto(this.producto);
+    }
   }
 };
 </script>
