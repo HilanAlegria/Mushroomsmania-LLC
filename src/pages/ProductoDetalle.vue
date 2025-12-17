@@ -2,7 +2,7 @@
   <section v-if="producto" class="py-24 px-6 container-app">
     <div class="grid gap-14 md:grid-cols-2 items-center">
 
-      <!-- Imagen controlada -->
+      <!-- Imagen -->
       <div class="flex justify-center">
         <div class="relative w-full max-w-md overflow-hidden rounded-2xl">
           <img
@@ -44,27 +44,31 @@
 
     </div>
   </section>
+
+  <section v-else class="py-24 text-center text-gray-400">
+    Producto no encontrado
+  </section>
 </template>
 
 <script>
+import { useProductosStore } from "@/stores/productos";
 import { useCarritoStore } from "@/stores/carrito";
 
 export default {
   name: "ProductoDetalle",
 
-  data() {
-    return {
-      producto: null
-    };
+  computed: {
+    producto() {
+      const productosStore = useProductosStore();
+      return productosStore.obtenerPorSlug(
+        this.$route.params.slug
+      );
+    }
   },
 
-  async mounted() {
-    const res = await fetch("/data/productos.json");
-    const productos = await res.json();
-
-    this.producto = productos.find(
-      p => p.slug === this.$route.params.slug
-    );
+  mounted() {
+    const productosStore = useProductosStore();
+    productosStore.cargarProductos();
   },
 
   methods: {

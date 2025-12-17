@@ -18,27 +18,25 @@
 <script>
 import ProductCard from "@/components/ProductCard.vue";
 import { useCarritoStore } from "@/stores/carrito";
+import { useProductosStore } from "@/stores/productos";
 
 export default {
   name: "Productos",
   components: { ProductCard },
 
-  data() {
-    return {
-      productos: []
-    };
+  computed: {
+    productos() {
+      const store = useProductosStore();
+      return store.todos;
+    }
   },
 
   mounted() {
-    this.cargarProductos();
+    const productosStore = useProductosStore();
+    productosStore.cargarProductos();
   },
 
   methods: {
-    async cargarProductos() {
-      const res = await fetch("/data/productos.json");
-      this.productos = await res.json();
-    },
-
     agregarAlCarrito(producto) {
       const carrito = useCarritoStore();
       carrito.agregarProducto(producto);
