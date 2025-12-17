@@ -27,12 +27,27 @@
         class="admin-input"
       />
 
-      <input
-        v-model="producto.imagen"
-        type="text"
-        placeholder="URL de la imagen"
-        class="admin-input"
-      />
+      <!-- IMAGEN DESDE PC -->
+      <div>
+        <label class="text-verde font-semibold mb-2 block">
+          Imagen del producto
+        </label>
+
+        <input
+          type="file"
+          accept="image/*"
+          @change="cargarImagen"
+          class="admin-input"
+        />
+
+        <!-- Preview -->
+        <img
+          v-if="producto.imagen"
+          :src="producto.imagen"
+          alt="Preview"
+          class="mt-4 w-40 h-40 object-cover rounded-xl border border-green-500/40"
+        />
+      </div>
 
       <textarea
         v-model="producto.descripcion"
@@ -137,6 +152,19 @@ export default {
   },
 
   methods: {
+    cargarImagen(event) {
+      const file = event.target.files[0];
+      if (!file) return;
+
+      const reader = new FileReader();
+
+      reader.onload = () => {
+        this.producto.imagen = reader.result;
+      };
+
+      reader.readAsDataURL(file);
+    },
+
     agregarBeneficio() {
       if (!this.beneficioTemp) return;
       this.producto.beneficios.push(this.beneficioTemp);

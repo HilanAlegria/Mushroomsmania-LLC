@@ -15,17 +15,22 @@
 
   <!-- Footer SOLO público -->
   <Footer v-if="!esAdmin" />
+
+  <!-- Botón flotante Admin -->
+  <AdminToggle />
 </template>
 
 <script>
 import NavBar from "./components/NavBar.vue";
 import Footer from "./components/Footer.vue";
+import AdminToggle from "./components/AdminToggle.vue";
 
 export default {
   name: "App",
   components: {
     NavBar,
-    Footer
+    Footer,
+    AdminToggle
   },
   computed: {
     esAdmin() {
@@ -40,11 +45,19 @@ export default {
   display: flex;
 }
 
-/* Contenido desplazado por el sidebar */
+/* Contenido desplazado SOLO cuando hay sidebar público */
 .content {
   margin-left: 220px;
   width: calc(100% - 220px);
   min-height: 100vh;
+}
+
+/* Admin sin desplazamiento */
+@media (min-width: 1025px) {
+  .content {
+    margin-left: 0;
+    width: 100%;
+  }
 }
 
 /* Responsive */
