@@ -2,15 +2,13 @@ import { defineStore } from "pinia";
 
 export const useCarritoStore = defineStore("carrito", {
   state: () => ({
+    // Carga inicial desde localStorage
     items: JSON.parse(localStorage.getItem("carrito")) || []
   }),
 
   getters: {
     total() {
-      return this.items.reduce(
-        (acc, item) => acc + Number(item.precio || 0),
-        0
-      );
+      return this.items.reduce((acc, item) => acc + item.precio, 0);
     },
     cantidad() {
       return this.items.length;
@@ -22,24 +20,25 @@ export const useCarritoStore = defineStore("carrito", {
       this.items.push({
         id: producto.id,
         nombre: producto.nombre,
-        precio: producto.precio || 0,
+        precio: producto.precio,
         imagen: producto.imagen,
         tipo: producto.tipo || "Producto"
       });
-      this.guardar();
+
+      this.guardarCarrito();
     },
 
     eliminarProducto(id) {
       this.items = this.items.filter(item => item.id !== id);
-      this.guardar();
+      this.guardarCarrito();
     },
 
     vaciarCarrito() {
       this.items = [];
-      this.guardar();
+      this.guardarCarrito();
     },
 
-    guardar() {
+    guardarCarrito() {
       localStorage.setItem("carrito", JSON.stringify(this.items));
     }
   }
