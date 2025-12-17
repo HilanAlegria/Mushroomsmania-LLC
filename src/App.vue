@@ -1,7 +1,7 @@
 <template>
   <div class="app-layout">
-    <!-- Menú lateral -->
-    <NavBar />
+    <!-- Menú lateral (solo público) -->
+    <NavBar v-if="!esAdmin" />
 
     <!-- Contenido principal -->
     <main class="content">
@@ -13,8 +13,8 @@
     </main>
   </div>
 
-  <!-- Footer FUERA del content -->
-  <Footer />
+  <!-- Footer SOLO público -->
+  <Footer v-if="!esAdmin" />
 </template>
 
 <script>
@@ -26,6 +26,11 @@ export default {
   components: {
     NavBar,
     Footer
+  },
+  computed: {
+    esAdmin() {
+      return this.$route.path.startsWith("/admin");
+    }
   }
 };
 </script>

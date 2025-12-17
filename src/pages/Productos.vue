@@ -24,23 +24,20 @@ export default {
   name: "Productos",
   components: { ProductCard },
 
-  computed: {
-    productos() {
-      const store = useProductosStore();
-      return store.todos;
-    }
-  },
-
-  mounted() {
+  setup() {
+    const carrito = useCarritoStore();
     const productosStore = useProductosStore();
-    productosStore.cargarProductos();
-  },
 
-  methods: {
-    agregarAlCarrito(producto) {
-      const carrito = useCarritoStore();
+    productosStore.cargarProductos();
+
+    const agregarAlCarrito = (producto) => {
       carrito.agregarProducto(producto);
-    }
+    };
+
+    return {
+      productos: productosStore.productos,
+      agregarAlCarrito
+    };
   }
 };
 </script>
