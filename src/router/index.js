@@ -2,12 +2,12 @@ import { createRouter, createWebHistory } from "vue-router";
 
 /* ===== PÚBLICO ===== */
 import Home from "../pages/Home.vue";
+import SobreNosotros from "../pages/SobreNosotros.vue";
 import Productos from "../pages/Productos.vue";
 import ProductoDetalle from "../pages/ProductoDetalle.vue";
 import Recetas from "../pages/Recetas.vue";
 import RecetaDetalle from "../pages/RecetaDetalle.vue";
 import Beneficios from "../pages/Beneficios.vue";
-import SobreNosotros from "../pages/SobreNosotros.vue";
 import Contacto from "../pages/Contacto.vue";
 import Carrito from "../pages/Carrito.vue";
 
@@ -16,6 +16,8 @@ import AdminLayout from "../admin/layouts/AdminLayout.vue";
 import DashboardAdmin from "../admin/pages/DashboardAdmin.vue";
 import ProductosAdmin from "../admin/pages/ProductosAdmin.vue";
 import ProductoForm from "../admin/pages/ProductoForm.vue";
+import RecetasAdmin from "../admin/pages/RecetasAdmin.vue";
+import RecetaForm from "../admin/pages/RecetaForm.vue";
 
 const routes = [
   /* ===== RUTAS PÚBLICAS ===== */
@@ -62,6 +64,22 @@ const routes = [
         path: "productos/:id",
         name: "AdminProductoEditar",
         component: ProductoForm,
+        props: true
+      },
+      {
+        path: "recetas",
+        name: "AdminRecetas",
+        component: RecetasAdmin
+      },
+      {
+        path: "recetas/nueva",
+        name: "AdminRecetaNueva",
+        component: RecetaForm
+      },
+      {
+        path: "recetas/:id",
+        name: "AdminRecetaEditar",
+        component: RecetaForm,
         props: true
       }
     ]

@@ -15,8 +15,38 @@ export const useRecetasStore = defineStore("recetas", {
       this.cargado = true;
     },
 
-    obtenerPorSlug(slug) {
-      return this.recetas.find(r => r.slug === slug);
+    agregarReceta(receta) {
+      receta.id = Date.now();
+      this.recetas.push(receta);
+      this.persistir();
+    },
+
+    actualizarReceta(receta) {
+      const index = this.recetas.findIndex(r => r.id === receta.id);
+      if (index !== -1) {
+        this.recetas[index] = receta;
+        this.persistir();
+      }
+    },
+
+    eliminarReceta(id) {
+      this.recetas = this.recetas.filter(r => r.id !== id);
+      this.persistir();
+    },
+
+    persistir() {
+      localStorage.setItem(
+        "recetas",
+        JSON.stringify(this.recetas)
+      );
+    },
+
+    cargarDesdeLocalStorage() {
+      const data = localStorage.getItem("recetas");
+      if (data) {
+        this.recetas = JSON.parse(data);
+        this.cargado = true;
+      }
     }
   }
 });

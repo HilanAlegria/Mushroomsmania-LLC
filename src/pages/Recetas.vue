@@ -24,7 +24,6 @@
           {{ receta.descripcion }}
         </p>
 
-        <!-- BOTÓN CON RUTA AL DETALLE -->
         <router-link
           :to="`/recetas/${receta.slug}`"
           class="btn-primary w-full text-center block"
@@ -37,34 +36,26 @@
 </template>
 
 <script>
+import { useRecetasStore } from "@/stores/recetas";
+
 export default {
   name: "Recetas",
+
   data() {
     return {
-      recetas: [
-        {
-          id: 1,
-          slug: "te-melena-de-leon",
-          nombre: "Té de Melena de León",
-          descripcion: "Ideal para la concentración y la salud cognitiva.",
-          imagen: "/images/melena.jpg"
-        },
-        {
-          id: 2,
-          slug: "infusion-de-reishi",
-          nombre: "Infusión de Reishi",
-          descripcion: "Receta relajante para el equilibrio del cuerpo.",
-          imagen: "/images/reishi.jpg"
-        },
-        {
-          id: 3,
-          slug: "energizante-de-cordyceps",
-          nombre: "Energizante de Cordyceps",
-          descripcion: "Perfecto para vitalidad y rendimiento físico.",
-          imagen: "/images/cordyceps.jpg"
-        }
-      ]
+      recetasStore: useRecetasStore()
     };
+  },
+
+  async mounted() {
+    this.recetasStore.cargarDesdeLocalStorage();
+    await this.recetasStore.cargarRecetas();
+  },
+
+  computed: {
+    recetas() {
+      return this.recetasStore.recetas;
+    }
   }
 };
 </script>

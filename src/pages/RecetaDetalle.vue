@@ -50,10 +50,6 @@
           </ol>
         </div>
 
-        <!-- BOTÓN CARRITO -->
-        <button class="btn-primary" @click="agregarAlCarrito">
-          Agregar al carrito
-        </button>
       </div>
 
     </div>
@@ -68,38 +64,24 @@
 </template>
 
 <script>
-import { useCarritoStore } from "@/stores/carrito";
+import { useRecetasStore } from "@/stores/recetas";
 
 export default {
   name: "RecetaDetalle",
 
   data() {
     return {
-      receta: null
+      receta: null,
+      recetasStore: useRecetasStore()
     };
   },
 
   async mounted() {
-    const res = await fetch("/data/recetas.json");
-    const recetas = await res.json();
+    await this.recetasStore.cargarRecetas();
 
-    this.receta = recetas.find(
+    this.receta = this.recetasStore.recetas.find(
       r => r.slug === this.$route.params.slug
     );
-  },
-
-  methods: {
-    agregarAlCarrito() {
-      const carrito = useCarritoStore();
-
-      carrito.items.push({
-        id: this.receta.id,
-        nombre: this.receta.nombre,
-        precio: 0, // receta no se vende (por ahora)
-        imagen: this.receta.imagen,
-        tipo: "Receta"
-      });
-    }
   }
 };
 </script>

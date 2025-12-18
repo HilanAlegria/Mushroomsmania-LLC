@@ -13,6 +13,11 @@
         Productos
       </router-link>
 
+      <router-link to="/admin/recetas" class="admin-link">
+        Recetas
+      </router-link>
+
+
       <router-link to="/">
         Volver al sitio
       </router-link>
