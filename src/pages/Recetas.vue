@@ -4,7 +4,10 @@
       Recetas con Hongos Medicinales
     </h2>
 
-    <div class="grid gap-10 sm:grid-cols-2 lg:grid-cols-3">
+    <div
+      v-if="recetas.length"
+      class="grid gap-10 sm:grid-cols-2 lg:grid-cols-3"
+    >
       <div
         v-for="receta in recetas"
         :key="receta.id"
@@ -32,6 +35,14 @@
         </router-link>
       </div>
     </div>
+
+    <!-- Estado vacío -->
+    <div
+      v-else
+      class="text-center text-gray-400 py-20"
+    >
+      No hay recetas disponibles
+    </div>
   </section>
 </template>
 
@@ -48,7 +59,6 @@ export default {
   },
 
   async mounted() {
-    this.recetasStore.cargarDesdeLocalStorage();
     await this.recetasStore.cargarRecetas();
   },
 
