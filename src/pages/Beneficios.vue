@@ -1,5 +1,5 @@
 <template>
-  <section class="py-24 px-6 max-w-5xl mx-auto">
+  <section class="py-24 px-6 max-w-5xl mx-auto" v-if="beneficios">
     <!-- TÍTULO -->
     <h1 class="text-4xl md:text-5xl font-bold text-[#2ecc00] mb-10">
       Beneficios de los Hongos Medicinales
@@ -7,10 +7,7 @@
 
     <!-- INTRO -->
     <p class="text-gray-300 text-lg max-w-3xl mb-16">
-      Los hongos comestibles no solo aportan sabor a la cocina: son alimentos
-      funcionales ricos en nutrientes, compuestos bioactivos y antioxidantes,
-      reconocidos por la ciencia nutricional como aliados de una alimentación
-      saludable.
+      {{ beneficios.intro }}
     </p>
 
     <!-- BLOQUES -->
@@ -22,10 +19,9 @@
           Perfil nutricional general
         </h2>
         <ul class="space-y-3 text-green-100">
-          <li>• Bajos en calorías y grasa, casi sin colesterol ni sodio.</li>
-          <li>• Ricos en fibra, proteínas vegetales, vitaminas B y minerales.</li>
-          <li>• Antioxidantes naturales que protegen contra el daño celular.</li>
-          <li>• Favorecen el metabolismo y el control del peso.</li>
+          <li v-for="(item, i) in beneficios.perfil" :key="i">
+            • {{ item }}
+          </li>
         </ul>
       </div>
 
@@ -35,14 +31,12 @@
           🧠 Melena de León (Hericium erinaceus)
         </h2>
         <p class="text-gray-300 mb-6 max-w-3xl">
-          Destaca por sus posibles beneficios sobre la salud cerebral y el sistema nervioso.
+          {{ beneficios.melena.descripcion }}
         </p>
         <ul class="space-y-3 text-green-100">
-          <li><strong class="text-[#2ecc00]">Función cognitiva:</strong> estimula NGF.</li>
-          <li><strong class="text-[#2ecc00]">Neuroprotección:</strong> reduce inflamación.</li>
-          <li><strong class="text-[#2ecc00]">Salud digestiva:</strong> apoya microbioma.</li>
-          <li><strong class="text-[#2ecc00]">Antioxidante:</strong> ergotionina.</li>
-          <li><strong class="text-[#2ecc00]">Sistema inmune:</strong> beta-glucanos.</li>
+          <li v-for="(item, i) in beneficios.melena.items" :key="i">
+            • {{ item }}
+          </li>
         </ul>
       </div>
 
@@ -52,26 +46,24 @@
           🍄 Hongo Oyster (Pleurotus ostreatus)
         </h2>
         <p class="text-gray-300 mb-6 max-w-3xl">
-          Versátil en la cocina y ampliamente estudiado por sus beneficios metabólicos.
+          {{ beneficios.oyster.descripcion }}
         </p>
         <ul class="space-y-3 text-green-100">
-          <li><strong class="text-[#2ecc00]">Inmunidad:</strong> β-glucanos.</li>
-          <li><strong class="text-[#2ecc00]">Antioxidante:</strong> ergothioneine.</li>
-          <li><strong class="text-[#2ecc00]">Cardiovascular:</strong> reduce LDL.</li>
-          <li><strong class="text-[#2ecc00]">Glucosa:</strong> mejora sensibilidad a insulina.</li>
-          <li><strong class="text-[#2ecc00]">Peso:</strong> alto en fibra, bajo en calorías.</li>
+          <li v-for="(item, i) in beneficios.oyster.items" :key="i">
+            • {{ item }}
+          </li>
         </ul>
       </div>
 
-      <!-- EXTRA -->
+      <!-- BENEFICIOS GENERALES -->
       <div class="card-dark">
         <h2 class="text-2xl font-bold text-[#2ecc00] mb-4">
           🍄 Beneficios generales
         </h2>
         <ul class="space-y-3 text-green-100">
-          <li>• Refuerzan el sistema inmunológico.</li>
-          <li>• Reducen inflamación crónica.</li>
-          <li>• Apoyan metabolismo y control del apetito.</li>
+          <li v-for="(item, i) in beneficios.generales" :key="i">
+            • {{ item }}
+          </li>
         </ul>
       </div>
 
@@ -80,7 +72,22 @@
 </template>
 
 <script>
+import { useBeneficiosStore } from "@/stores/beneficios";
+
 export default {
-  name: "Beneficios"
+  name: "Beneficios",
+  data() {
+    return {
+      store: useBeneficiosStore()
+    };
+  },
+  mounted() {
+    this.store.cargar();
+  },
+  computed: {
+    beneficios() {
+      return this.store.data;
+    }
+  }
 };
 </script>

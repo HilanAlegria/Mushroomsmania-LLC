@@ -19,6 +19,12 @@ import ProductoForm from "../admin/pages/ProductoForm.vue";
 import RecetasAdmin from "../admin/pages/RecetasAdmin.vue";
 import RecetaForm from "../admin/pages/RecetaForm.vue";
 
+/* === NUEVAS SECCIONES ADMIN === */
+import InicioAdmin from "../admin/pages/InicioAdmin.vue";
+import NosotrosAdmin from "../admin/pages/NosotrosAdmin.vue";
+import BeneficiosAdmin from "../admin/pages/BeneficiosAdmin.vue";
+import ContactoAdmin from "../admin/pages/ContactoAdmin.vue";
+
 const routes = [
   /* ===== RUTAS PÚBLICAS ===== */
   { path: "/", component: Home },
@@ -50,6 +56,15 @@ const routes = [
         name: "AdminDashboard",
         component: DashboardAdmin
       },
+
+      /* === INICIO === */
+      {
+        path: "inicio",
+        name: "AdminInicio",
+        component: InicioAdmin
+      },
+
+      /* === PRODUCTOS === */
       {
         path: "productos",
         name: "AdminProductos",
@@ -66,6 +81,8 @@ const routes = [
         component: ProductoForm,
         props: true
       },
+
+      /* === RECETAS === */
       {
         path: "recetas",
         name: "AdminRecetas",
@@ -81,6 +98,27 @@ const routes = [
         name: "AdminRecetaEditar",
         component: RecetaForm,
         props: true
+      },
+
+      /* === NOSOTROS === */
+      {
+        path: "nosotros",
+        name: "AdminNosotros",
+        component: NosotrosAdmin
+      },
+
+      /* === BENEFICIOS === */
+      {
+        path: "beneficios",
+        name: "AdminBeneficios",
+        component: BeneficiosAdmin
+      },
+
+      /* === CONTACTO === */
+      {
+        path: "contacto",
+        name: "AdminContacto",
+        component: ContactoAdmin
       }
     ]
   }

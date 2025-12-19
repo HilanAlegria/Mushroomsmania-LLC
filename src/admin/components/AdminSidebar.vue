@@ -5,19 +5,42 @@
     </h1>
 
     <nav class="admin-menu">
+      <!-- DASHBOARD -->
       <router-link to="/admin">
         Dashboard
       </router-link>
 
+      <!-- INICIO -->
+      <router-link to="/admin/inicio">
+        Inicio
+      </router-link>
+
+      <!-- PRODUCTOS -->
       <router-link to="/admin/productos">
         Productos
       </router-link>
 
-      <router-link to="/admin/recetas" class="admin-link">
+      <!-- RECETAS -->
+      <router-link to="/admin/recetas">
         Recetas
       </router-link>
 
+      <!-- NOSOTROS -->
+      <router-link to="/admin/nosotros">
+        Nosotros
+      </router-link>
 
+      <!-- BENEFICIOS -->
+      <router-link to="/admin/beneficios">
+        Beneficios
+      </router-link>
+
+      <!-- CONTACTO -->
+      <router-link to="/admin/contacto">
+        Contacto
+      </router-link>
+
+      <!-- VOLVER AL SITIO -->
       <router-link to="/">
         Volver al sitio
       </router-link>

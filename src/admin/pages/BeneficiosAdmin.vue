@@ -58,9 +58,14 @@ export default {
     };
   },
 
-  mounted() {
-    this.store.cargar();
-    this.beneficios = [...this.store.beneficios];
+  async mounted() {
+    await this.store.cargar?.();
+
+    if (this.store.beneficios?.general) {
+      this.beneficios = [
+        ...this.store.beneficios.general
+      ];
+    }
   },
 
   methods: {
@@ -75,7 +80,10 @@ export default {
     },
 
     guardar() {
-      this.store.guardar(this.beneficios);
+      this.store.beneficios.general = [
+        ...this.beneficios
+      ];
+
       alert("Beneficios actualizados");
     }
   }

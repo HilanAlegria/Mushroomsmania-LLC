@@ -64,12 +64,14 @@ export default {
 
   mounted() {
     this.store.cargar();
-    this.contacto = JSON.parse(JSON.stringify(this.store.contacto));
+    this.contacto = JSON.parse(
+      JSON.stringify(this.store.contacto)
+    );
   },
 
   methods: {
     guardar() {
-      this.store.guardar(this.contacto);
+      this.store.actualizar(this.contacto);
       alert("Contacto actualizado");
     }
   }

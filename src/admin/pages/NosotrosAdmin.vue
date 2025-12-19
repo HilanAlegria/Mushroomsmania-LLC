@@ -59,9 +59,14 @@ export default {
     };
   },
 
-  mounted() {
-    this.store.cargar();
-    this.nosotros = JSON.parse(JSON.stringify(this.store.data));
+  async mounted() {
+    await this.store.cargar?.();
+
+    if (this.store.data) {
+      this.nosotros = JSON.parse(
+        JSON.stringify(this.store.data)
+      );
+    }
   },
 
   methods: {

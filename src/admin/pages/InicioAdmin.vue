@@ -91,11 +91,14 @@ export default {
     };
   },
 
-  mounted() {
-    this.inicioStore.cargarInicio();
-    this.inicio = JSON.parse(
-      JSON.stringify(this.inicioStore.inicio)
-    );
+  async mounted() {
+    await this.inicioStore.cargarInicio?.();
+
+    if (this.inicioStore.inicio) {
+      this.inicio = JSON.parse(
+        JSON.stringify(this.inicioStore.inicio)
+      );
+    }
   },
 
   methods: {

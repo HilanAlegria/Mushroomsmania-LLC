@@ -1,40 +1,53 @@
 <template>
   <section class="nosotros">
-    <h1 class="title">Sobre <span>MUSHROOMANIA</span> 🍄</h1>
+    <h1 class="title">
+      Sobre <span>MUSHROOMANIA</span> 🍄
+    </h1>
 
-    <div class="cards">
+    <div class="cards" v-if="nosotros">
       <div class="card-nosotros">
         <h2>Misión</h2>
         <p>
-          Ofrecer productos naturales de hongos de la más alta calidad,
-          promoviendo la salud y el bienestar de nuestros clientes.
+          {{ nosotros.mision }}
         </p>
       </div>
 
       <div class="card-nosotros">
         <h2>Visión</h2>
         <p>
-          Ser la empresa líder en productos de hongos, reconocida por su
-          innovación, calidad y compromiso con el bienestar de las familias.
+          {{ nosotros.vision }}
         </p>
       </div>
 
       <div class="card-nosotros">
         <h2>Objetivo General</h2>
         <p>
-          Mejorar la salud y el bienestar de las familias a través de productos
-          naturales de hongos, contribuyendo a su crecimiento integral.
+          {{ nosotros.objetivo }}
         </p>
       </div>
     </div>
   </section>
 </template>
 
-
 <script>
+import { useNosotrosStore } from "@/stores/nosotros";
+
 export default {
-  name: "SobreNosotros"
-}
+  name: "SobreNosotros",
+  data() {
+    return {
+      store: useNosotrosStore()
+    };
+  },
+  mounted() {
+    this.store.cargar();
+  },
+  computed: {
+    nosotros() {
+      return this.store.data;
+    }
+  }
+};
 </script>
 
 <style scoped>

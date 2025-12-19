@@ -2,26 +2,20 @@ import { defineStore } from "pinia";
 
 export const useInicioStore = defineStore("inicio", {
   state: () => ({
-    inicio: {
-      titulo: "Hongos Medicinales",
-      subtitulo: "Salud natural desde la raíz",
-      imagen: "",
-      textoBoton: "Ver productos",
-      linkBoton: "/productos"
-    }
+    heroImages: []
   }),
 
   actions: {
-    cargarInicio() {
-      const data = localStorage.getItem("inicio");
-      if (data) {
-        this.inicio = JSON.parse(data);
-      }
+    cargar() {
+      this.heroImages = [
+        "/images/melena.jpg",
+        "/images/piopino.jpg",
+        "/images/oyster.jpg"
+      ];
     },
 
-    guardarInicio(payload) {
-      this.inicio = payload;
-      localStorage.setItem("inicio", JSON.stringify(this.inicio));
+    actualizarImagenes(imagenes) {
+      this.heroImages = imagenes;
     }
   }
 });

@@ -2,7 +2,7 @@
   <section class="hero">
     <!-- Slides -->
     <div
-      v-for="(img, index) in heroImages"
+      v-for="(img, index) in inicioStore.heroImages"
       :key="img"
       class="hero-slide"
       :class="{ active: currentIndex === index }"
@@ -15,7 +15,7 @@
     <!-- Indicadores -->
     <div class="hero-indicators">
       <span
-        v-for="(img, index) in heroImages"
+        v-for="(img, index) in inicioStore.heroImages"
         :key="index"
         :class="{ active: currentIndex === index }"
       ></span>
@@ -24,23 +24,24 @@
 </template>
 
 <script>
+import { useInicioStore } from "@/stores/inicio";
+
 export default {
   name: "Home",
   data() {
     return {
-      heroImages: [
-        "/images/melena.jpg",
-        "/images/piopino.jpg",
-        "/images/oyster.jpg"
-      ],
+      inicioStore: useInicioStore(),
       currentIndex: 0,
       interval: null
     };
   },
   mounted() {
+    this.inicioStore.cargar();
+
     this.interval = setInterval(() => {
       this.currentIndex =
-        (this.currentIndex + 1) % this.heroImages.length;
+        (this.currentIndex + 1) %
+        this.inicioStore.heroImages.length;
     }, 5000);
   },
   beforeUnmount() {
