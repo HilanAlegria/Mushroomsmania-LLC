@@ -1,19 +1,15 @@
 <template>
   <section class="py-24 px-6 max-w-5xl mx-auto" v-if="beneficios">
-    <!-- TÍTULO -->
     <h1 class="text-4xl md:text-5xl font-bold text-[#2ecc00] mb-10">
       Beneficios de los Hongos Medicinales
     </h1>
 
-    <!-- INTRO -->
     <p class="text-gray-300 text-lg max-w-3xl mb-16">
       {{ beneficios.intro }}
     </p>
 
-    <!-- BLOQUES -->
     <div class="space-y-12">
 
-      <!-- PERFIL GENERAL -->
       <div class="card-dark">
         <h2 class="text-2xl font-bold text-[#2ecc00] mb-4">
           Perfil nutricional general
@@ -25,7 +21,6 @@
         </ul>
       </div>
 
-      <!-- MELENA -->
       <div class="card-dark">
         <h2 class="text-2xl font-bold text-[#2ecc00] mb-4">
           🧠 Melena de León (Hericium erinaceus)
@@ -40,7 +35,6 @@
         </ul>
       </div>
 
-      <!-- OYSTER -->
       <div class="card-dark">
         <h2 class="text-2xl font-bold text-[#2ecc00] mb-4">
           🍄 Hongo Oyster (Pleurotus ostreatus)
@@ -55,7 +49,6 @@
         </ul>
       </div>
 
-      <!-- BENEFICIOS GENERALES -->
       <div class="card-dark">
         <h2 class="text-2xl font-bold text-[#2ecc00] mb-4">
           🍄 Beneficios generales

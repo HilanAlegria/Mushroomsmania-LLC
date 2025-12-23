@@ -12,18 +12,15 @@
         </p>
       </div>
 
-      <!-- Enlaces -->
       <div>
         <h4 class="font-semibold mb-3">Enlaces</h4>
         <ul class="space-y-2 text-sm text-white/80">
           <li><router-link to="/" class="hover:text-white">Inicio</router-link></li>
           <li><router-link to="/productos" class="hover:text-white">Productos</router-link></li>
           <li><router-link to="/recetas" class="hover:text-white">Recetas</router-link></li>
-          <li><router-link to="/contacto" class="hover:text-white">Contacto</router-link></li>
         </ul>
       </div>
 
-      <!-- Contacto -->
       <div>
         <h4 class="font-semibold mb-3">Contáctanos</h4>
         <ul class="space-y-2 text-sm text-white/80">

@@ -8,7 +8,6 @@ import ProductoDetalle from "../pages/ProductoDetalle.vue";
 import Recetas from "../pages/Recetas.vue";
 import RecetaDetalle from "../pages/RecetaDetalle.vue";
 import Beneficios from "../pages/Beneficios.vue";
-import Contacto from "../pages/Contacto.vue";
 import Carrito from "../pages/Carrito.vue";
 
 /* ===== ADMIN ===== */
@@ -19,14 +18,11 @@ import ProductoForm from "../admin/pages/ProductoForm.vue";
 import RecetasAdmin from "../admin/pages/RecetasAdmin.vue";
 import RecetaForm from "../admin/pages/RecetaForm.vue";
 
-/* === NUEVAS SECCIONES ADMIN === */
 import InicioAdmin from "../admin/pages/InicioAdmin.vue";
 import NosotrosAdmin from "../admin/pages/NosotrosAdmin.vue";
 import BeneficiosAdmin from "../admin/pages/BeneficiosAdmin.vue";
-import ContactoAdmin from "../admin/pages/ContactoAdmin.vue";
 
 const routes = [
-  /* ===== RUTAS PÚBLICAS ===== */
   { path: "/", component: Home },
 
   { path: "/productos", component: Productos },
@@ -44,9 +40,7 @@ const routes = [
   { path: "/beneficios", component: Beneficios },
   { path: "/sobre-nosotros", component: SobreNosotros },
   { path: "/carrito", component: Carrito },
-  { path: "/contacto", component: Contacto },
 
-  /* ===== RUTAS ADMIN ===== */
   {
     path: "/admin",
     component: AdminLayout,
@@ -57,14 +51,12 @@ const routes = [
         component: DashboardAdmin
       },
 
-      /* === INICIO === */
       {
         path: "inicio",
         name: "AdminInicio",
         component: InicioAdmin
       },
 
-      /* === PRODUCTOS === */
       {
         path: "productos",
         name: "AdminProductos",
@@ -82,7 +74,6 @@ const routes = [
         props: true
       },
 
-      /* === RECETAS === */
       {
         path: "recetas",
         name: "AdminRecetas",
@@ -100,26 +91,18 @@ const routes = [
         props: true
       },
 
-      /* === NOSOTROS === */
       {
         path: "nosotros",
         name: "AdminNosotros",
         component: NosotrosAdmin
       },
 
-      /* === BENEFICIOS === */
       {
         path: "beneficios",
         name: "AdminBeneficios",
         component: BeneficiosAdmin
       },
 
-      /* === CONTACTO === */
-      {
-        path: "contacto",
-        name: "AdminContacto",
-        component: ContactoAdmin
-      }
     ]
   }
 ];

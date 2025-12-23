@@ -1,29 +1,23 @@
 <template>
   <aside class="sidebar">
-    <!-- TÍTULO / MARCA -->
-    <h1 class="brand" @click="goTo('/')">
-      <span class="brand-top">MUSHROO</span>
-      <span class="brand-bottom">MANIA🍄</span>
-    </h1>
-
-    <!-- MENÚ -->
-    <nav class="menu">
-      <router-link to="/">Inicio</router-link>
-      <router-link to="/productos">Productos</router-link>
-      <router-link to="/sobre-nosotros">Nosotros</router-link>
-      <router-link to="/beneficios">Beneficios</router-link>
-      <router-link to="/recetas">Recetas</router-link>
-      <router-link to="/contacto">Contacto</router-link>
+    <div class="brand" @click="goTo('/')">
+      <div class="logo">🍄</div>
+      <span class="brand-name">MUSHROOMANIA</span>
+    </div>
+    <button class="menu-toggle" @click="abierto = !abierto">
+      ☰ Menú
+    </button>
+    <nav class="menu" :class="{ abierto }">
+      <router-link to="/">🏠 Inicio</router-link>
+      <router-link to="/productos">🛍️ Productos</router-link>
+      <router-link to="/sobre-nosotros">👥 Nosotros</router-link>
+      <router-link to="/beneficios">💚 Beneficios</router-link>
+      <router-link to="/recetas">🍲 Recetas</router-link>
 
       <!-- CARRITO -->
-      <router-link to="/carrito" class="carrito-link relative">
+      <router-link to="/carrito" class="carrito-link">
         🛒 Carrito
-
-        <!-- BADGE -->
-        <span
-          v-if="carrito.cantidad > 0"
-          class="badge"
-        >
+        <span v-if="carrito.cantidad > 0" class="badge">
           {{ carrito.cantidad }}
         </span>
       </router-link>
@@ -37,14 +31,21 @@ import { useCarritoStore } from "@/stores/carrito";
 export default {
   name: "NavBar",
 
+  data() {
+    return {
+      abierto: false
+    };
+  },
+
   setup() {
     const carrito = useCarritoStore();
     return { carrito };
   },
 
   methods: {
-    goTo(route) {
-      this.$router.push(route);
+    goTo(ruta) {
+      this.$router.push(ruta);
+      this.abierto = false;
     }
   }
 };
@@ -53,127 +54,101 @@ export default {
 <style scoped>
 .sidebar {
   background: linear-gradient(to bottom, #0b2e1a, #061a10);
-  padding: 40px 30px;
+  padding: 30px 24px;
   width: 260px;
   min-height: 100vh;
   box-shadow: 4px 0 20px rgba(0, 0, 0, 0.6);
 }
 
-/* ===== TÍTULO ===== */
 .brand {
-  color: white;
+  text-align: center;
   cursor: pointer;
-  margin-bottom: 60px;
-  line-height: 1.05;
+  margin-bottom: 30px;
 }
 
-.brand-top,
-.brand-bottom {
+.logo {
+  font-size: 2.4rem;
+}
+
+.brand-name {
   display: block;
-  font-size: 2.2rem;
+  margin-top: 6px;
+  font-size: 1.3rem;
   font-weight: 800;
+  color: white;
 }
 
-.brand:hover {
-  color: var(--verde-herbal);
+.menu-toggle {
+  display: none;
+  background: none;
+  border: none;
+  color: #39ff14;
+  font-size: 1.4rem;
+  font-weight: 700;
+  margin-bottom: 20px;
+  cursor: pointer;
 }
 
-/* ===== MENÚ ===== */
 .menu {
   display: flex;
   flex-direction: column;
-  gap: 30px;
+  gap: 22px;
 }
 
 .menu a {
   color: #e6ffe6;
   text-decoration: none;
-  font-size: 1.6rem;
+  font-size: 1.2rem;
   font-weight: 600;
-  padding-left: 10px;
-  transition: transform 0.25s ease, color 0.25s ease;
-  transform-origin: left center;
+  transition: all 0.25s ease;
 }
 
-.menu a:hover:not(.router-link-exact-active) {
-  transform: scale(1.4);
+.menu a:hover {
   color: var(--verde-herbal);
+  transform: translateX(6px);
 }
 
-/* ===== CARRITO ===== */
-.carrito-link {
-  position: relative;
-  margin-top: 30px;
-  padding: 14px 16px;
-  border-radius: 12px;
-  background: rgba(46, 204, 0, 0.12);
-  color: #39ff14;
-  font-weight: 700;
-  box-shadow: 0 0 15px rgba(46, 204, 0, 0.25);
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
-}
-
-.carrito-link:hover {
-  transform: scale(1.15);
-  box-shadow: 0 0 28px rgba(46, 204, 0, 0.55);
-}
-
-/* ===== BADGE ===== */
-.badge {
-  position: absolute;
-  top: -8px;
-  right: -10px;
-  background: var(--verde-herbal);
-  color: #000;
-  font-size: 0.9rem;
-  font-weight: 800;
-  padding: 4px 8px;
-  border-radius: 999px;
-  box-shadow: 0 0 10px rgba(57, 255, 20, 0.8);
-}
-
-/* LINK ACTIVO */
 .menu a.router-link-exact-active {
   color: var(--verde-herbal);
-  transform: scale(1.35);
-  text-shadow: 0 0 12px rgba(57, 255, 20, 0.65);
+  text-shadow: 0 0 10px rgba(57, 255, 20, 0.6);
 }
 
-/* ===== RESPONSIVE ===== */
+.carrito-link {
+  margin-top: 20px;
+  background: rgba(57, 255, 20, 0.12);
+  padding: 10px 14px;
+  border-radius: 12px;
+  position: relative;
+}
+
+.badge {
+  position: absolute;
+  top: -6px;
+  right: -8px;
+  background: #39ff14;
+  color: #000;
+  font-size: 0.75rem;
+  font-weight: 800;
+  padding: 4px 7px;
+  border-radius: 999px;
+}
+
 @media (max-width: 1024px) {
   .sidebar {
     width: 100%;
     min-height: auto;
-    padding: 25px;
+  }
+
+  .menu-toggle {
+    display: block;
   }
 
   .menu {
-    flex-direction: row;
-    flex-wrap: wrap;
-    gap: 20px;
+    display: none;
   }
 
-  .menu a {
-    font-size: 1.3rem;
-  }
-
-  .carrito-link {
-    margin-top: 0;
-  }
-}
-
-@media (max-width: 768px) {
-  .menu {
-    justify-content: center;
-  }
-
-  .brand-top,
-  .brand-bottom {
-    font-size: 1.6rem;
-  }
-
-  .menu a {
-    font-size: 1.2rem;
+  .menu.abierto {
+    display: flex;
   }
 }
 </style>

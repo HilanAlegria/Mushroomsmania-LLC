@@ -45,7 +45,6 @@ export default {
   overflow-y: auto;
 }
 
-/* Responsive básico */
 @media (max-width: 1024px) {
   .admin-page {
     padding: 24px;

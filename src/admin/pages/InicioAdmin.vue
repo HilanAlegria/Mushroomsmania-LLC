@@ -6,7 +6,6 @@
 
     <div class="admin-card space-y-6">
 
-      <!-- TÍTULO -->
       <input
         v-model="inicio.titulo"
         type="text"
@@ -14,7 +13,6 @@
         class="admin-input"
       />
 
-      <!-- SUBTÍTULO -->
       <input
         v-model="inicio.subtitulo"
         type="text"
@@ -22,7 +20,6 @@
         class="admin-input"
       />
 
-      <!-- IMAGEN -->
       <div>
         <label class="block text-verde font-semibold mb-2">
           Imagen principal
@@ -42,7 +39,6 @@
         />
       </div>
 
-      <!-- TEXTO BOTÓN -->
       <input
         v-model="inicio.textoBoton"
         type="text"
@@ -50,7 +46,6 @@
         class="admin-input"
       />
 
-      <!-- LINK BOTÓN -->
       <input
         v-model="inicio.linkBoton"
         type="text"
@@ -58,7 +53,6 @@
         class="admin-input"
       />
 
-      <!-- ACCIONES -->
       <div class="flex justify-end pt-6">
         <button
           @click="guardar"

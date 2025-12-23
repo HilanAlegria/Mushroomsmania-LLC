@@ -26,6 +26,22 @@
         </p>
       </div>
     </div>
+
+    <div class="contacto-nosotros">
+      <h2>Contáctanos</h2>
+
+      <p>
+        Escríbenos para pedidos, asesoría personalizada o dudas sobre nuestros
+        hongos medicinales.
+      </p>
+
+      <div class="redes">
+        <a href="#" target="_blank">Instagram</a>
+        <a href="#" target="_blank">Facebook</a>
+        <a href="#" target="_blank">TikTok</a>
+      </div>
+    </div>
+
   </section>
 </template>
 
@@ -70,13 +86,11 @@ export default {
   text-shadow: 0 0 12px rgba(57, 255, 20, 0.4);
 }
 
-/* CONTENEDOR DE CARDS */
 .cards {
   display: grid;
   gap: 35px;
 }
 
-/* CARD */
 .card-nosotros {
   background: rgba(15, 20, 15, 0.85);
   border: 1px solid rgba(57, 255, 20, 0.25);
@@ -96,7 +110,6 @@ export default {
     inset 0 0 20px rgba(57, 255, 20, 0.08);
 }
 
-/* TÍTULOS INTERNOS */
 .card-nosotros h2 {
   font-size: 2rem;
   margin-bottom: 15px;
@@ -108,8 +121,42 @@ export default {
   line-height: 1.7;
   color: #d6d6d6;
 }
+.contacto-nosotros {
+  margin-top: 80px;
+  padding: 40px;
+  border-radius: 20px;
+  background: rgba(15, 20, 15, 0.85);
+  border: 1px solid rgba(57, 255, 20, 0.25);
+}
 
-/* RESPONSIVE */
+.contacto-nosotros h2 {
+  font-size: 2rem;
+  color: var(--verde-herbal);
+  margin-bottom: 15px;
+}
+
+.contacto-nosotros p {
+  color: #d6d6d6;
+  margin-bottom: 20px;
+  max-width: 600px;
+}
+
+.redes {
+  display: flex;
+  gap: 20px;
+}
+
+.redes a {
+  color: #39ff14;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.redes a:hover {
+  text-decoration: underline;
+}
+
+
 @media (max-width: 768px) {
   .nosotros {
     padding: 60px 25px;

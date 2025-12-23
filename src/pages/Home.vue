@@ -1,6 +1,5 @@
 <template>
   <section class="hero">
-    <!-- Slides -->
     <div
       v-for="(img, index) in inicioStore.heroImages"
       :key="img"
@@ -9,10 +8,8 @@
       :style="{ backgroundImage: `url(${img})` }"
     ></div>
 
-    <!-- Overlay -->
     <div class="overlay"></div>
 
-    <!-- Indicadores -->
     <div class="hero-indicators">
       <span
         v-for="(img, index) in inicioStore.heroImages"
@@ -54,11 +51,10 @@ export default {
 .hero {
   position: relative;
   width: 100%;
-  min-height: calc(100vh - 60px); /* ajusta si tu navbar cambia */
+  min-height: calc(100vh - 60px); 
   overflow: hidden;
 }
 
-/* Slides */
 .hero-slide {
   position: absolute;
   inset: 0;
@@ -73,7 +69,6 @@ export default {
   z-index: 1;
 }
 
-/* Overlay elegante */
 .overlay {
   position: absolute;
   inset: 0;
@@ -85,7 +80,6 @@ export default {
   z-index: 2;
 }
 
-/* Indicadores */
 .hero-indicators {
   position: absolute;
   bottom: 30px;
@@ -108,7 +102,6 @@ export default {
   transform: scale(1.3);
 }
 
-/* Responsive */
 @media (max-width: 768px) {
   .hero {
     min-height: 70vh;
