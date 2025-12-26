@@ -14,7 +14,7 @@
   <AdminToggle />
 
 <a
-  href="https://wa.me/17182080924?text=Hola%20👋,%20estoy%20interesado%20en%20sus%20productos%20de%20MushrooMania%20🍄.%20¿Podrían%20brindarme%20más%20información?"
+  href="https://wa.me/17182080924?text=Hola%20,%20estoy%20interesado%20en%20sus%20productos%20de%20MushrooMania%20🍄.%20¿Podrían%20brindarme%20más%20información?"
   target="_blank"
   class="whatsapp-float"
   aria-label="WhatsApp"

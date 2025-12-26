@@ -1,6 +1,5 @@
 import { createRouter, createWebHistory } from "vue-router";
 
-/* ===== PÚBLICO ===== */
 import Home from "../pages/Home.vue";
 import SobreNosotros from "../pages/SobreNosotros.vue";
 import Productos from "../pages/Productos.vue";
@@ -10,7 +9,6 @@ import RecetaDetalle from "../pages/RecetaDetalle.vue";
 import Beneficios from "../pages/Beneficios.vue";
 import Carrito from "../pages/Carrito.vue";
 
-/* ===== ADMIN ===== */
 import AdminLayout from "../admin/layouts/AdminLayout.vue";
 import DashboardAdmin from "../admin/pages/DashboardAdmin.vue";
 import ProductosAdmin from "../admin/pages/ProductosAdmin.vue";

@@ -2,7 +2,6 @@
   <footer class="bg-[#8b6f47] text-white mt-24">
     <div class="max-w-7xl mx-auto px-6 py-10 grid gap-8 md:grid-cols-3">
 
-      <!-- Marca -->
       <div>
         <h3 class="font-bold text-lg mb-2">
           MUSHROOMANIA 🍄

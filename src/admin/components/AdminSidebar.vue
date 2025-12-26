@@ -1,6 +1,5 @@
 <template>
   <aside class="admin-sidebar">
-    <!-- LOGO + NOMBRE -->
     <div class="admin-brand" @click="$router.push('/admin')">
       <img
         :src="logo"
@@ -43,7 +42,6 @@ export default {
   box-shadow: 4px 0 20px rgba(0, 0, 0, 0.6);
 }
 
-/* BRAND */
 .admin-brand {
   display: flex;
   align-items: center;
@@ -65,7 +63,6 @@ export default {
   line-height: 1;
 }
 
-/* MENU */
 .admin-menu {
   display: flex;
   flex-direction: column;
